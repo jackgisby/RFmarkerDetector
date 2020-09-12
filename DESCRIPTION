@@ -14,16 +14,20 @@ Description: A collection of tools for multivariate analysis of metabolomics
     relevant biomarkers.
 License: GPL-3
 LazyData: true
+Depends:
+    AUCRF
 Imports:
     randomForest,
     ggplot2,
     UsingR,
     WilcoxCV,
-    ROCR
-Depends:
-    AUCRF
+    ROCR,
+    methods
+Suggests:
+    testthat
 Packaged: 2015-01-09 14:23:32 UTC; Pg
 NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2015-01-10 04:15:07
-RoxygenNote: 5.0.1
+Published: 2015-01-10 04:15:07
+Encoding: UTF-8
+RoxygenNote: 7.1.1
