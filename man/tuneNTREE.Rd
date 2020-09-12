@@ -4,11 +4,17 @@
 \alias{tuneNTREE}
 \title{Tuning of the ntree parameter (i.e. the number of trees) for a Random Forest model}
 \usage{
-tuneNTREE(data, mtry, iterations, minNTREE = 500, pace = 100,
-  seq_length = 5)
+tuneNTREE(
+  expr_df,
+  mtry,
+  iterations,
+  minNTREE = 500,
+  pace = 100,
+  seq_length = 5
+)
 }
 \arguments{
-\item{data}{the n x p dataframe used to build the Random Forest models. The first two columns must represent respectively
+\item{expr_df}{the n x p dataframe used to build the Random Forest models. The first two columns must represent respectively
 the sample names and the class labels associated to each sample}
 
 \item{mtry}{the chosen mtry value}
@@ -26,17 +32,17 @@ a n x p matrix in which n is the number of models considered and p is the number
 Each column represents the oob errors resulting from each model and corresponding to the different ntree values
 }
 \description{
-This function tries to find the 'optimal' value for the parameter ntree which indicates 
-the number of trees used to grow the ensemble of trees. To do that it will build several random forest models with a different 
+This function tries to find the 'optimal' value for the parameter ntree which indicates
+the number of trees used to grow the ensemble of trees. To do that it will build several random forest models with a different
 number of trees for the mtry value considered. The number of models built for each ntree value will be equal to
-the parameter iteration. The oob errors of each random forest model, computed 
+the parameter iteration. The oob errors of each random forest model, computed
 for each ntree value will be arranged in a matrix.
 }
 \examples{
-## data(cachexiaData)
-## res <- tuneNTREE(cachexiaData, 8, iterations = 50, minNTREE = 600, pace = 100, seq_length = 10)
+data(cachexiaData)
+tuneNTREE(cachexiaData[,1:10], 8, iterations = 5, minNTREE = 50, pace = 50, seq_length = 10)
+
 }
 \author{
 Piergiorgio Palla
 }
-

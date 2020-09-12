@@ -4,27 +4,41 @@
 \alias{getBestRFModel}
 \title{Extracting the best performing Random Forest model}
 \usage{
-getBestRFModel(combinations, data, params)
+getBestRFModel(
+  combinations,
+  expr_df,
+  params,
+  ntree = 1000,
+  nsplits = 100,
+  test_prop = 1/3
+)
 }
 \arguments{
 \item{combinations}{a k x n matrix in which n is the number of combinations of the input variables and
 k is the size of each combination}
 
-\item{data}{a n x p data frame of n observations and p-2 predictors. The first two columns must represent the sample
+\item{expr_df}{a n x p expr_df frame of n observations and p-2 predictors. The first two columns must represent the sample
 names and the classes associates to each sample}
 
 \item{params}{a list of params useful to perform a Monte Carlo Cross validation. It should contain the following
-data: \itemize{
+expr_df: \itemize{
 \item ntrees the number of trees of each random forest model
-\item nsplits the number of random splittings of the original dataset into training and test data sets
-\item test_prop the percentage (expressed as a real number) of the observations of the original dataset 
-to be included in each test set 
-\item ref_level the assumed reference class label 
+\item nsplits the number of random splittings of the original expr_df into training and test expr_df sets
+\item test_prop the percentage (expressed as a real number) of the observations of the original expr_df
+to be included in each test set
+\item ref_level the assumed reference class label
 }}
+
+\item{ntree}{the number of trees of each random forest model}
+
+\item{nsplits}{the number of random splittings of the original expr_df into training and test expr_df sets}
+
+\item{test_prop}{the percentage (expressed as a real number) of the observations of the original expr_df
+to be included in each test set}
 }
 \value{
 a list of the following elements: \itemize{
-\item best_model_set the set of best performing Random Forest models in terms of AUC 
+\item best_model_set the set of best performing Random Forest models in terms of AUC
 \item max_auc the maximum value of AUC corresponding to those models
 \item biomarker_set the set of metabolites (or bins) corresponding to the best performing Random Forest
 }
@@ -33,23 +47,25 @@ a list of the following elements: \itemize{
 This function allows to find the best performing Random Forest model starting from a k-combination of its input variables
 }
 \details{
-The k-combinations of the input variables is represented as a k x n matrix in which k is the size of each 
-combination and n is the number of combinations of the input variables of the original dataset.
-Each column of the combinations matrix contains the indexes of the input variables from the original dataset
-The \code{getBestRFModel} extracts a datAset from the original one considering the indexes in these columns.
-Then it will build a Random Forest model performing a Monte Carlo CV for each dataset.
+The k-combinations of the input variables is represented as a k x n matrix in which k is the size of each
+combination and n is the number of combinations of the input variables of the original expr_df.
+Each column of the combinations matrix contains the indexes of the input variables from the original expr_df
+The \code{getBestRFModel} extracts a expr_df from the original one considering the indexes in these columns.
+Then it will build a Random Forest model performing a Monte Carlo CV for each expr_df.
 The models cross-validated will be compared considering the AUC of their averaged ROC curve.
 The function will return the best models, the maximum value of AUC and the most relevant input variables associated
 }
 \examples{
-## data(cachexiaData)
-## dataset <- cachexiaData[, 1:15]
-## indexes <- 3:15
-## combinations <- combn(x = indexes, m = 5) # a 5 x n_of_combinations matrix
-## test_params = list(ntrees= 500, nsplits = 100, test_prop = 1/3)
-## res <- getBestRFModel(combinations, dataset, test_params)
+data(cachexiaData)
+
+expr_df <- cachexiaData[, 1:15]
+indexes <- 3:15
+combinations <- utils::combn(x = indexes, m = 5) # a 5 x n_of_combinations matrix
+test_params = list(ntrees= 10, nsplits = 10, test_prop = 1/3)
+
+res <- getBestRFModel(combinations, expr_df, test_params)
+
 }
 \author{
 Piergiorgio Palla
 }
-

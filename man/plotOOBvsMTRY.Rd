@@ -2,7 +2,7 @@
 % Please edit documentation in R/RFTuning.R
 \name{plotOOBvsMTRY}
 \alias{plotOOBvsMTRY}
-\title{Plotting the average OOB error and its 95\% confidence interval as a function of the mtry parameter}
+\title{Visualise ntry tuning}
 \usage{
 plotOOBvsMTRY(mean_matrix, ci_matrix)
 }
@@ -19,12 +19,14 @@ a graphical representation of the average OOB error as a function of the mtry pa
 Plotting the average OOB error and its 95\% confidence interval as a function of the mtry parameter
 }
 \examples{
-## data(cachexiaData)
-## res <- tuneMTRY(cachexiaData, iterations = 5, maxntree = 600, mtry_length = 10, graph = F)
-## l <- optimizeMTRY(res$oob)
-## plotOOBvsMTRY(l$mean_matrix, l$ci_matrix)
+data(cachexiaData)
+
+res <- tuneMTRY(cachexiaData[,1:10], iterations = 5, maxntree = 50, mtry_length = 5, graph = FALSE)
+l <- optimizeMTRY(res$oob)
+
+plotOOBvsMTRY(l$mean_matrix, l$ci_matrix)
+
 }
 \author{
 Piergiorgio Palla
 }
-

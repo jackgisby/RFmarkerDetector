@@ -2,13 +2,12 @@
 % Please edit documentation in R/scaling.R
 \name{paretoscale}
 \alias{paretoscale}
-\title{Pareto scaling method performed on the columns of the data table (i.e. metabolite concentrations measured by 1H NMR
-or binned 1H NMR spectra)}
+\title{Pareto scaling method}
 \usage{
-paretoscale(data, exclude = T)
+paretoscale(expr_df, exclude = T)
 }
 \arguments{
-\item{data}{a n x p matrix of n observations and p predictors. If the first two columns of the matrix
+\item{expr_df}{a n x p matrix of n observations and p predictors. If the first two columns of the matrix
 represent respectively the sample names and the class labels associated to each sample, the scaling method should not
 include these two columns}
 
@@ -18,22 +17,28 @@ include these two columns}
 a scaled version of the input matrix
 }
 \description{
-The function provides a data pretreatment approach called Pareto Scaling. Each column of the table is given a mean of zero by substracting the column
-column mean from each value in the column; then each value in each column is divided by a scaling factor, represented by the square 
-root of the standard deviation of the column values.
+Performed on the columns of the data table (i.e. metabolite concentrations measured by 1H NMR
+or binned 1H NMR spectra)
 }
 \details{
-This function is useful when variables have significantly different scales. It is  generally the preferred option 
+The function provides a data pretreatment approach called Pareto Scaling. Each column of the table is given a mean of zero by substracting the column
+column mean from each value in the column; then each value in each column is divided by a scaling factor, represented by the square
+root of the standard deviation of the column values.
+
+
+This function is useful when variables have significantly different scales. It is  generally the preferred option
 in NMR Metabolomics because it is a good compromise between no scaling (centering) and auto scaling
 }
 \examples{
-#' ## load the included example dataset
+
+#' ## load the included example expr_df
 data(cachexiaData)
-## call paretoscale with the parameter exclude set to TRUE (default) 
-## in order to exclude the first two columns of the dataset from scaling
-data.scaled <- paretoscale(cachexiaData, exclude = TRUE) 
+
+## call paretoscale with the parameter exclude set to TRUE (default)
+## in order to exclude the first two columns of the expr_df from scaling
+data.scaled <- paretoscale(cachexiaData[,1:10], exclude = TRUE)
+
 }
 \author{
 Piegiorgio Palla
 }
-

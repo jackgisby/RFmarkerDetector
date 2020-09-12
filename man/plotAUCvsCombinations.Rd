@@ -16,13 +16,14 @@ plotAUCvsCombinations(auc_values, num_of_variables, num_of_combinations)
 \description{
 This function allows to plot the average AUC as a function of the number k-combinations of the n input
 variables. If n is the number of input variables, the number of k-combinations of those variables is equal to
-\eqn{n!/k!(n!-k!)}. Each of these combinations contains the indexes of the input variables selected. For each 
-combination we can extract a dataset, build a random forest model and perform a cross-validation. We can describe
+\eqn{n!/k!(n!-k!)}. Each of these combinations contains the indexes of the input variables selected. For each
+combination we can extract a expr_df, build a random forest model and perform a cross-validation. We can describe
 the performance of each cross-validated model with an 'average' ROC curve and its AUC. The collected auc values
-for each combination (dataset) are used by the function to build a diagram of the AUC as a function 
+for each combination (expr_df) are used by the function to build a diagram of the AUC as a function
+}
+\details{
 of the number of combinations
 }
 \author{
 Piergiorgio Palla
 }
-

@@ -18,4 +18,3 @@ This function provides the accuracy and the recall of a Random Forest model
 \author{
 Piergiorgio Palla
 }
-

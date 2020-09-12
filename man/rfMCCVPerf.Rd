@@ -19,13 +19,15 @@ a list of the two elements: \itemize{
 This function provides the average accuracy and the recall of a list of Random Forest models
 }
 \examples{
-## data(cachexiaData)
-## params <- list(ntrees = 500, ref_level = levels(cachexiaData[,2])[1] )
-## mccv_obj <- rfMCCV(cachexiaData, nsplits = 5, test_prop = 1/3, opt_params = params)
-## models <- mccv_obj$models
-## res <- rfMCCVPerf(models)
+data(cachexiaData)
+params <- list(ntrees = 10, ref_level = levels(cachexiaData[,2])[1])
+
+mccv_obj <- rfMCCV(cachexiaData[,1:10], nsplits = 5, test_prop = 1/3, opt_params = params)
+models <- mccv_obj$models
+
+res <- rfMCCVPerf(models)
+
 }
 \author{
 Piergiorgio Palla
 }
-

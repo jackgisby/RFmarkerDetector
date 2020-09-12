@@ -15,10 +15,10 @@ error for the corresponding population of models.}
 \value{
 a list of two elements: \itemize{
 \item mean_matrix a 1 x p matrix which contains the mean of each OOB errors sample (resulting from the training of N different Random Forest models growth
-with N different mtry values) 
-\item ci_matrix a 2 x p matrix in which each column represents the 95\% confidence interval of the mean of the population of the OOB errors for each 
-mtry value 
-\item sd_matrix a 1 x p matrix which contains the standard deviatiaon of each OOB error sample resulting from the training of N different models
+with N different mtry values)
+\item ci_matrix a 2 x p matrix in which each column represents the 95\% confidence interval of the mean of the population of the OOB errors for each
+mtry value
+\item sd_matrix a 1 x p matrix which contains the standard deviation of each OOB error sample resulting from the training of N different models
 built for each value of mtry}
 }
 \description{
@@ -27,11 +27,11 @@ starting from a sample of N models. These values will be used to compute the mtr
 that is the optimal parameter we are looking for.
 }
 \examples{
-## data(cachexiaData)
-## res <- tuneMTRY(cachexiaData, iterations = 50, maxntree = 600, mtry_length = 10, graph = F)
-## l <- optimizeMTRY(res$oob)
+data(cachexiaData)
+res <- tuneMTRY(cachexiaData[,1:10], iterations = 5, maxntree = 50, mtry_length = 5, graph = FALSE)
+optimizeMTRY(res$oob)
+
 }
 \author{
 Piergiorgio Palla
 }
-

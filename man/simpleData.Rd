@@ -4,7 +4,9 @@
 \name{simpleData}
 \alias{simpleData}
 \title{simpleData}
-\format{An object of class \code{list} of length 2.}
+\format{
+An object of class \code{list} of length 2.
+}
 \usage{
 data(simpleData)
 }
@@ -12,4 +14,3 @@ data(simpleData)
 A list of two vectors named respectively predictions and labels
 }
 \keyword{datasets}
-

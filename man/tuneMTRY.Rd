@@ -4,11 +4,17 @@
 \alias{tuneMTRY}
 \title{Tuning of the mtry parameter for a Random Forest model}
 \usage{
-tuneMTRY(data, iterations, maxntree, mtry_length, changeTreeNum = F,
-  graph = T)
+tuneMTRY(
+  expr_df,
+  iterations,
+  maxntree,
+  mtry_length,
+  changeTreeNum = F,
+  graph = T
+)
 }
 \arguments{
-\item{data}{the n x p dataframe used to build the models and to tune the parameter mtry. The first two columns
+\item{expr_df}{the n x p dataframe used to build the models and to tune the parameter mtry. The first two columns
 must represent respectively the sample names and the class labels related to each sample}
 
 \item{iterations}{the number of different random forest models built for each value of mtry}
@@ -19,29 +25,29 @@ must represent respectively the sample names and the class labels related to eac
 
 \item{changeTreeNum}{a logical value indicating whether or not to change}
 
-\item{graph}{a logical value indicating whether to plot the OOB error as a function of the parameter mtry 
+\item{graph}{a logical value indicating whether to plot the OOB error as a function of the parameter mtry
 the number of trees during the tuning of mtry}
 }
 \value{
 a list of two elements:\itemize{
   \item a diagram of the average value of the OOB error as a function of the mtry with its 95\% confidence interval
-  \item a n x p matrix of n iterations and p mtry values tested 
+  \item a n x p matrix of n iterations and p mtry values tested
 }
 }
 \description{
-\code{tuneMTRY} tries to identify the 'optimal' value of the mtry parameter which indicates the 
+\code{tuneMTRY} tries to identify the 'optimal' value of the mtry parameter which indicates the
 number of input variables randomly chosen at each node
 }
 \details{
-The function searches for the optimal value of mtry assigning to it a set of values and building different random forests (also with a different 
-number of trees) for each value of the mtry. The number of models built for each mtry is defined by the \code{iteration} parameter. 
+The function searches for the optimal value of mtry assigning to it a set of values and building different random forests (also with a different
+number of trees) for each value of the mtry. The number of models built for each mtry is defined by the \code{iteration} parameter.
 The oob errors of each random forest model, computed for each mtry value, are then arranged in a matrix
 }
 \examples{
-## data(cachexiaData)
-## res <- tuneMTRY(cachexiaData, iterations = 10, maxntree = 600, mtry_length = 10, graph = FALSE)
+data(cachexiaData)
+res <- tuneMTRY(cachexiaData[,1:10], iterations = 5, maxntree = 50, mtry_length = 5, graph = FALSE)
+
 }
 \author{
 Piergiorgio Palla
 }
-

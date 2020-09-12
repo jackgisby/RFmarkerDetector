@@ -4,36 +4,38 @@
 \alias{rfMCCV}
 \title{Monte Carlo cross-validation of Random Forest models}
 \usage{
-rfMCCV(data, nsplits, test_prop, opt_params)
+rfMCCV(expr_df, nsplits, test_prop, opt_params)
 }
 \arguments{
-\item{data}{a n x p dataframe used to build the models. The first two columns
+\item{expr_df}{a n x p expr_dfframe used to build the models. The first two columns
 must represent respectively the sample names and the class labels related to each sample}
 
-\item{nsplits}{the number of random splittings of the original dataset into training and test data sets}
+\item{nsplits}{the number of random splittings of the original expr_df into training and test expr_df sets}
 
-\item{test_prop}{the percentage (expressed as a real number) of the observations of the original dataset 
+\item{test_prop}{the percentage (expressed as a real number) of the observations of the original expr_df
 to be included in each test set}
 
-\item{opt_params}{a list of optional parameters characterizing both the model to be validated and the input dataset. 
-It may include parameters like the number of trees (ntree), the mtry, or the eventual reference class label (ref_level) of the dataset}
+\item{opt_params}{a list of optional parameters characterizing both the model to be validated and the input expr_df.
+It may include parameters like the number of trees (ntree), the mtry, or the eventual reference class label (ref_level) of the expr_df}
 }
 \value{
 a list of three elements: \itemize{
-\item a n x p dataframe representing the predictions during the cross-validation process. Its number of lines is equal to the number of observations included in each test set
+\item a n x p expr_dfframe representing the predictions during the cross-validation process. Its number of lines is equal to the number of observations included in each test set
 and the number of columns is equal to the number of test sets (defined by the nsplits input parameter).
-\item a n x p dataframe representing the labels associated to the samples of each test set. Its number of lines n is equal to the number observations in each test set while p is the number of test sets defined by the nsplits input parameter 
+\item a n x p expr_dfframe representing the labels associated to the samples of each test set. Its number of lines n is equal to the number observations in each test set while p is the number of test sets defined by the nsplits input parameter
 \item a list of p random forest models tested in the cross-validation process
- }
- 
- @examples
- data(cachexiaData)
- params <- list(ntrees = 500, ref_level = levels(cachexiaData[,2])[1] )
- mccv_obj <- rfMCCV(cachexiaData, nsplits = 5, test_prop = 1/3, opt_params = params)
- @author Piergiorgio Palla
- @export
+}
 }
 \description{
 This function allows to perform a Monte Carlo cross-validation of a Random Forest
 }
+\examples{
+data(cachexiaData)
+params <- list(ntrees = 10, ref_level = levels(cachexiaData[, 2])[1])
 
+mccv_obj <- rfMCCV(cachexiaData[,1:10], nsplits = 5, test_prop = 1 / 3, opt_params = params)
+
+}
+\author{
+Piergiorgio Palla
+}

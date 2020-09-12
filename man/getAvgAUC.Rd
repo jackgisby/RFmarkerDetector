@@ -7,9 +7,9 @@
 getAvgAUC(predictions, labels)
 }
 \arguments{
-\item{predictions}{a vector, matrix, list, or data frame containing the predictions.}
+\item{predictions}{a vector, matrix, list, or expr_df frame containing the predictions.}
 
-\item{labels}{a vector, matrix, list, or data frame containing the true class labels. It must have
+\item{labels}{a vector, matrix, list, or expr_df frame containing the true class labels. It must have
 the same dimensions as predictions}
 }
 \value{
@@ -19,11 +19,12 @@ the average AUC value
 This function computes the average AUC of the ROC curves obtained from a cross-validation procedure
 }
 \examples{
-## load a simple dataset with the vectors of the predictions and the labels resulting from a CV 
+
+## load a simple expr_df with the vectors of the predictions and the labels resulting from a CV
 data(simpleData)
 avg_auc <- getAvgAUC(simpleData$predictions, simpleData$labels)
+
 }
 \author{
 Piergiorgio Palla
 }
-

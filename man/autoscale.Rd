@@ -5,10 +5,10 @@
 \title{Unit variance scaling method performed on the columns of the data (i.e. metabolite concentrations measured by 1H NMR
 or binned 1H NMR spectra)}
 \usage{
-autoscale(data, exclude = T)
+autoscale(expr_df, exclude = T)
 }
 \arguments{
-\item{data}{a n x p data frame with n observations and p columns. While the first two columns usually represent the names of the samples and the 
+\item{expr_df}{a n x p data frame with n observations and p columns. While the first two columns usually represent the names of the samples and the
 class labels related to each sample respectively, the remaining columns represent metabolite concentrations measured by 1H NMR or bins of 1H NMR spectra}
 
 \item{exclude}{a boolean variable which stores a simple True/ False setting. If set to True the scaling method will exclude the first two columns.}
@@ -21,13 +21,14 @@ The function provides a data pretreatment approach called Autoscaling (also know
 is mean centered and then divided by the standard deviation of the variable. This way each variable will have zero mean and unit standard deviation.
 }
 \examples{
-## load the included example dataset
+## load the included example expr_df
 data(cachexiaData)
-## call autoscale with the parameter exclude set to TRUE (default) 
-## in order to exclude the first two columns of the dataset from scaling
-data.scaled <- autoscale(cachexiaData, exclude = TRUE)
+
+## call autoscale with the parameter exclude set to TRUE (default)
+## in order to exclude the first two columns of the expr_df from scaling
+data.scaled <- autoscale(cachexiaData[,1:10], exclude = TRUE)
+
 }
 \author{
 Piegiorgio Palla
 }
-

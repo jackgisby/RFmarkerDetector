@@ -5,10 +5,10 @@
 \title{Mean centering performed on the columns of the data (i.e. metabolite concentrations measured by 1H NMR
 or binned 1H NMR spectra)}
 \usage{
-meanCenter(data, exclude = T)
+meanCenter(expr_df, exclude = T)
 }
 \arguments{
-\item{data}{a n x p data frame with n observations and p columns. While the first two columns usually represent the names of the samples and the 
+\item{expr_df}{a n x p data frame with n observations and p columns. While the first two columns usually represent the names of the samples and the
 class labels related to each sample respectively, the remaining columns represent metabolite concentrations measured by 1H NMR or bins of 1H NMR spectra}
 
 \item{exclude}{a logical variable which stores a simple True / False setting. If set to True the scaling method will exclude the first two columns.}
@@ -20,13 +20,15 @@ a mean centered version of the input matrix
 The function allows to have each predictor (column) centered on zero. The average value of each predictor is substracted to each value in the column.
 }
 \examples{
-## load the included example dataset
+
+## load the included example expr_df
 data(cachexiaData)
-## call meanCenter with the parameter exclude set to TRUE (default) 
-## in order to exclude the first two columns of the dataset from scaling
-data.scaled <- meanCenter(cachexiaData, exclude = TRUE)
+
+## call meanCenter with the parameter exclude set to TRUE (default)
+## in order to exclude the first two columns of the expr_df from scaling
+data.scaled <- meanCenter(cachexiaData[,1:10], exclude = TRUE)
+
 }
 \author{
 Piergiorgio Palla
 }
-

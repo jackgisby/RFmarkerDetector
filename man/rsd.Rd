@@ -22,10 +22,10 @@ the coefficient of variation shows the extent of variability in relation to mean
 It is expressed as a percentage. Lower values indicate lower variability.
 }
 \examples{
-v <-  runif(10, min = 5, max = 30)
-rsd(v) 
+v <- runif(10, min = 5, max = 30)
+rsd(v)
+
 }
 \author{
 Piergiorgio Palla
 }
-
